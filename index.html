@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <button class="button">
+        <span>Hover Me</span>
+        <div class="pixel-container" style="--cuslr:#0802f7"></div>
+    </button>
+    <button class="button">
+        <span>Hover Me</span>
+        <div class="pixel-container" style="--cuslr:#ff00af"></div>
+    </button>
+
+    <script>
+        let Buttons = document.querySelectorAll(".button");
+        Buttons.forEach(button => {
+
+            let pixel = 10;
+            let pixelContainer = button.querySelector(".pixel-container");
+
+            let width = button.offsetWidth;
+            let height = button.offsetHeight;
+
+            let rows = Math.floor(width / pixel);
+            let cols = Math.floor(height / pixel);
+
+            for (let R = 0; R < rows - 1; R++) {
+                for (let C = 0; C < cols; C++) {
+                    let Pixels = document.createElement("div");
+                    Pixels.classList.add("pixel");
+
+                    Pixels.style.top = `${C * pixel - 5}px`;
+                    Pixels.style.left = `${R * pixel}px`;
+                    Pixels.style.width = `${pixel}px`;
+                    Pixels.style.height = `${pixel}px`;
+
+                    let delay = Math.random() * 0.5;
+
+                    Pixels.style.transitionDelay = `${delay}s`;
+
+                    let tx = (Math.random() - 0.5) * 40;
+                    let ty = (Math.random() - 0.5) * 40;
+
+                    Pixels.style.setProperty("--tx", `${tx}px`);
+                    Pixels.style.setProperty("--ty", `${ty}px`);
+
+                    pixelContainer.appendChild(Pixels);
+                }
+            }
+            for (let R = 0; R < rows; R++) {
+                for (let C = 0; C < cols; C++) {
+                    let Pixels = document.createElement("div");
+                    Pixels.classList.add("pixelTwo", "pixel");
+
+                    Pixels.style.top = `${C * pixel - 5}px`;
+                    Pixels.style.left = `${R * pixel - 5}px`;
+                    Pixels.style.width = `${pixel}px`;
+                    Pixels.style.height = `${pixel}px`;
+
+                    let delay = Math.random() * 0.5;
+
+                    Pixels.style.transitionDelay = `${delay}s`;
+
+                    let tx = (Math.random() - 0.5) * 50;
+                    let ty = (Math.random() - 0.5) * 50;
+
+                    Pixels.style.setProperty("--tx", `${tx}px`);
+                    Pixels.style.setProperty("--ty", `${ty}px`);
+
+                    pixelContainer.appendChild(Pixels);
+                }
+            }
+
+
+        });
+    </script>
+</body>
+
+</html>
